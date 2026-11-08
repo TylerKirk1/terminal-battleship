@@ -1,29 +1,27 @@
-# Terminal Battleship (LAN)
+# Terminal Battleship
 
-A minimal two-player Battleship game that runs in the terminal using curses and a simple TCP protocol. One player hosts, the other connects over the same network.
+Battleship in your terminal. Play the computer, or a friend on the same network.
 
-## Requirements
-- Python 3.8+
-- A terminal that supports curses (most macOS/Linux terminals do)
+## Run it
 
-## Quick start
+Needs Python 3.8+. On Windows, install curses first:
 
-On the host machine:
-```bash
-python3 battleship.py --host --port 9999 --name Alice
+```
+python -m pip install -r requirements.txt
 ```
 
-On the other machine (same network):
-```bash
-python3 battleship.py --connect HOST_IP:9999 --name Bob
+Then:
+
+```
+python battleship.py
 ```
 
-## Controls
-- Arrow keys or WASD: move cursor
-- Enter or Space: fire
-- Q or Esc: quit
+Pick a mode from the menu. You can also skip it with `--computer`, `--host`, or `--join 192.168.1.20` (add `:PORT` if the host used `--port`). `--name` sets your name; `--ascii` swaps the symbols for plain ASCII if your terminal shows boxes.
 
-## Notes
-- Ships are placed randomly to keep things simple.
-- The game is turn-based; the host randomly chooses who goes first.
-- If the terminal is too small, resize it and restart the game.
+## Playing
+
+Place your five ships (arrows move, R rotates, Enter places, Space places them all randomly), then take turns firing. The first to sink the whole fleet wins. After a game, press N for a rematch.
+
+When hosting, the screen shows the address your friend should type. Windows may ask to let Python through the firewall the first time.
+
+Tests: `python -m unittest`
